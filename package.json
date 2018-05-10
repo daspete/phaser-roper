@@ -1,0 +1,13 @@
+{
+  "name": "roper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "nuxt": "^1.4.0",
+    "phaser-ce": "^2.10.5"
+  }
+}

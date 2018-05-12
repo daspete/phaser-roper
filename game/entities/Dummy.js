@@ -11,7 +11,7 @@ class Dummy extends Phaser.Sprite {
         this.body.setRectangle(20, 20);
         this.body.static = true;
         this.body.setCollisionGroup(game.dummyCG);
-        this.body.collides(game.wireCG);
+        this.body.collides(game.ropeCG);
 
         this.contacted = false;
         this.counter = 0;

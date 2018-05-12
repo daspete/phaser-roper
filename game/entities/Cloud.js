@@ -1,5 +1,4 @@
 import '~/game/PhaserBridge'
-import PhaserBridge from '../PhaserBridge';
 
 class Cloud extends Phaser.Sprite {
 

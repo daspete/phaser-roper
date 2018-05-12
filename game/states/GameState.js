@@ -1,6 +1,6 @@
 import '~/game/PhaserBridge'
 
-import Background from '~/game/utils/Background'
+import Background from '~/game/entities/Background'
 import Player from '~/game/entities/Player'
 import Cloud from '~/game/entities/Cloud'
 
@@ -12,16 +12,16 @@ class GameState extends Phaser.State {
     }
 
     create() {
-        if(this.game.$settings.debug){
+        if(this.game.$settings.fps){
             this.game.time.advancedTiming = true;
         }
         this.game.spacebar = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        this.game.world.setBounds(0, 0, 3000, 1000);
+        this.game.world.setBounds(0, 0, 8000, 1000);
         this.width = this.game.world.bounds.width;
         this.height = this.game.world.bounds.height;
 
-        this.background = new Background(this.game, this.width, this.height);
+        this.game.background = new Background(this.game, this.width, this.height);
 
         this.game.terrain = this.game.add.bitmapData(this.width, this.height);
         this.game.terrain.addToWorld();
@@ -32,15 +32,13 @@ class GameState extends Phaser.State {
         this.physics.p2.gravity.y = 1400;
 
         this.game.spriteCG = this.physics.p2.createCollisionGroup();
-        this.game.wireCG = this.physics.p2.createCollisionGroup();
+        this.game.ropeCG = this.physics.p2.createCollisionGroup();
         this.game.dummyCG = this.physics.p2.createCollisionGroup();
         this.game.gemCG = this.physics.p2.createCollisionGroup();
 
         this.physics.p2.updateBoundsCollisionGroup();
 
         this.positions = this.cache.getJSON('positions');
-
-        
 
         this.game.player = new Player(this.game, this.positions.start.x, this.positions.start.y - 100);
         this.game.player.body.setCollisionGroup(this.game.spriteCG);
@@ -79,8 +77,7 @@ class GameState extends Phaser.State {
             this.game.player.allowAction = false;
             this.game.player.body.velocity.x = 0;
             this.game.player.body.velocity.y = 0;
-            this.game.player.showPointer = false;
-            this.game.player.wireBitmap.clear();
+
             this.game.player.frame = 0;
         }
 
@@ -88,7 +85,7 @@ class GameState extends Phaser.State {
     }
 
     render(){
-        if(this.game.$settings.debug){
+        if(this.game.$settings.fps){
             this.game.debug.text('FPS: ' + this.game.time.fps || 'FPS: --', 40, 40, "#00ff00"); 
         }
     }

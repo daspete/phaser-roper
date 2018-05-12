@@ -1,6 +1,6 @@
 import '~/game/PhaserBridge'
 
-import Background from '~/game/utils/Background'
+import Background from '~/game/entities/Background'
 
 class MainMenuState extends Phaser.State {
 

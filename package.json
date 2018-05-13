@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
     "api": "json-server --watch api/db.json --port=3001"
   },
   "dependencies": {

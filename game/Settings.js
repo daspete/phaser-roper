@@ -1,6 +1,6 @@
 export default {
     debug: false,
-    fps: true,
+    fps: false,
     player: {
         mass: 3,
         gravityScale: 1,

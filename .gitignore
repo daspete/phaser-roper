@@ -2,3 +2,4 @@
 /.nuxt
 /dist
 /yarn.lock
+/.env

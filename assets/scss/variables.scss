@@ -1,0 +1,8 @@
+$btn-color-base: #f96;
+$btn-color-dark: darken($btn-color-base, 6%);
+$btn-color-darker: darken($btn-color-base, 12%);
+$btn-bottom-color-dark: darken($btn-color-base, 24%);
+$btn-bottom-color-darker: darken($btn-color-base, 30%);
+$btn-shadow-color: rgba(darken($btn-color-base, 60%), 0.7);
+
+$grid-gutter: 1rem;

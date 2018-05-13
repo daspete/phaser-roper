@@ -3,12 +3,22 @@ import '~/game/PhaserBridge'
 import Background from '~/game/entities/Background'
 import Player from '~/game/entities/Player'
 import Cloud from '~/game/entities/Cloud'
+import Level from '~/game/entities/Level'
 
 class GameState extends Phaser.State {
 
     preload() {
         this.load.image('terrain', 'assets/levels/terrain0.png');
         this.load.json('positions', 'assets/levels/positions0.json');
+
+        this.load.physics('elementphysics', 'assets/level/elementphysics.json');
+
+        for(let i = 0; i < this.game.$settings.level.elements.length; i++){
+            this.load.image(
+                this.game.$settings.level.elements[i].type,
+                this.game.$settings.level.elements[i].file
+            );
+        }
     }
 
     create() {
@@ -23,10 +33,11 @@ class GameState extends Phaser.State {
 
         this.game.background = new Background(this.game, this.width, this.height);
 
-        this.game.terrain = this.game.add.bitmapData(this.width, this.height);
-        this.game.terrain.addToWorld();
-        this.game.terrain.draw('terrain', 0, 0);
-        this.game.terrain.update();
+        // this.game.terrain = this.game.add.bitmapData(this.width, this.height);
+        // this.game.terrain.addToWorld();
+        // this.game.terrain.draw('terrain', 0, 0);
+        // this.game.terrain.update();
+        
 
         this.physics.startSystem(Phaser.Physics.P2JS);
         this.physics.p2.gravity.y = 1400;
@@ -40,17 +51,19 @@ class GameState extends Phaser.State {
 
         this.positions = this.cache.getJSON('positions');
 
+        this.game.level = new Level(this.game, this.game.$settings.level);
+
         this.game.player = new Player(this.game, this.positions.start.x, this.positions.start.y - 100);
         this.game.player.body.setCollisionGroup(this.game.spriteCG);
         this.game.player.body.collides(this.game.spriteCG);
 
-        this.startCloud = new Cloud(this.game, this.positions.start.x, this.positions.start.y);
-        this.startCloud.body.setCollisionGroup(this.game.spriteCG);
-        this.startCloud.body.collides(this.game.spriteCG);
+        // this.startCloud = new Cloud(this.game, this.positions.start.x, this.positions.start.y);
+        // this.startCloud.body.setCollisionGroup(this.game.spriteCG);
+        // this.startCloud.body.collides(this.game.spriteCG);
 
-        this.finishCloud = new Cloud(this.game, this.positions.finish.x, this.positions.finish.y);
-        this.finishCloud.body.setCollisionGroup(this.game.spriteCG);
-        this.finishCloud.body.collides(this.game.spriteCG);
+        // this.finishCloud = new Cloud(this.game, this.positions.finish.x, this.positions.finish.y);
+        // this.finishCloud.body.setCollisionGroup(this.game.spriteCG);
+        // this.finishCloud.body.collides(this.game.spriteCG);
 
         this.game.camera.follow(this.game.player);
         this.timer = 0;

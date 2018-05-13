@@ -1,0 +1,104 @@
+@import "microreset";
+.level-editor {
+	
+    &__header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: darkorange;
+        font-size: 3rem;
+		font-weight: 700;
+		-webkit-background-clip: text;
+		color: transparent;
+  		text-shadow: 2px 2px 3px rgba(white,0.4);
+
+        span {
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+        &:before {
+            position: absolute;
+            top: -2rem;
+            right: -2rem;
+            left: -2rem;
+            bottom: 0;
+			content: '';
+			color: greenyellow;
+			box-shadow: inset 0 0 5rem darken(rgba(greenyellow, 0.2), 100%), 0 0 2rem rgba(black, 0.6);
+			background-color: darken(rgba(greenyellow, 0.3), 25%);
+			z-index: -1;
+        }
+	}
+	
+	&__content {
+		position: fixed;
+		top: 5.5rem;
+		left: 0;
+		right: 0;
+		bottom: 4.5rem;
+		margin: 1rem;
+	}
+
+	&__toolbox {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 200px;
+		bottom: calc(150px + #{$grid-gutter});
+		box-shadow: 1px 5px 18px rgba(black, 0.2);
+	}
+
+	&__minimap {
+		position: absolute;
+		bottom: 0;
+		height: 150px;
+		width: 200px;
+		box-shadow: 1px 5px 18px rgba(black, 0.2);
+	}
+
+	&__level {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: calc(200px + #{$grid-gutter});
+		right: calc(250px + #{$grid-gutter});
+		box-shadow: 1px 5px 18px rgba(black, 0.2);
+		overflow: auto;
+	}
+
+	&__elements {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 250px;
+		box-shadow: 1px 5px 18px rgba(black, 0.2);
+	}
+
+    &__footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: steelblue;
+        color: black;
+        text-align: center;
+        &:before {
+            position: absolute;
+            top: 0rem;
+            right: -2rem;
+            left: -2rem;
+            bottom: -2rem;
+            content: '';
+            box-shadow: inset 0 0 2rem rgba(black, 0.8);
+        }
+    }
+}
+
+.level {
+	border: 1px solid black;
+	overflow: hidden;
+}

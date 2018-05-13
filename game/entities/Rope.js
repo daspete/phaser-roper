@@ -52,7 +52,7 @@ class Rope extends Phaser.Sprite {
             }
 
             collisions = this.game.physics.p2.hitTest(this.anchorPoint);
-            pointAlpha = this.game.terrain.getPixelRGB(Math.round(this.anchorPoint.x), Math.round(this.anchorPoint.y)).a;
+            //pointAlpha = this.game.terrain.getPixelRGB(Math.round(this.anchorPoint.x), Math.round(this.anchorPoint.y)).a;
 
             if (collisions.length > 0) {
                 if ((collisions[0].parent.sprite == null) || (collisions[0].parent.sprite &&
@@ -66,7 +66,7 @@ class Rope extends Phaser.Sprite {
                     }
                     break;
                 }
-            } else if (pointAlpha > 0) {
+            } /*else if (pointAlpha > 0) {
                 while (pointAlpha > 0) {
                     this.anchorPoint.y += 2;
                     this.anchorPoint.x -= 1;
@@ -81,7 +81,7 @@ class Rope extends Phaser.Sprite {
                 this.anchorBody.setRectangle(13, 13);
                 this.anchorBody.static = true;
                 break;
-            }
+            }*/
 
             this.anchorPoint.y -= 10;
             this.anchorPoint.x += 6;
@@ -167,35 +167,35 @@ class Rope extends Phaser.Sprite {
             ));
         }
 
-        for (var i = 0, j = 0; i <= 1; i += y, j++) {
-            var px = this.game.math.linearInterpolation(wx, i);
-            var py = this.game.math.linearInterpolation(wy, i);
+        // for (var i = 0, j = 0; i <= 1; i += y, j++) {
+        //     var px = this.game.math.linearInterpolation(wx, i);
+        //     var py = this.game.math.linearInterpolation(wy, i);
 
-            if (py % 8 < 0.5) {
-                var rx = Math.round(px);
-                var ry = Math.round(py);
-                if (this.game.terrain.getPixelRGB(rx + 16, ry).a > 0 &&
-                    this.game.terrain.getPixelRGB(rx + 25, ry).a > 0 &&
-                    this.game.physics.p2.hitTest(new Phaser.Point(rx + 16, ry)).length == 0) 
-                {
-                    new Dummy(this.game, rx + 25, ry);
-                } else if (this.game.terrain.getPixelRGB(rx - 16, ry).a > 0 &&
-                    this.game.terrain.getPixelRGB(rx - 25, ry).a > 0 &&
-                    this.game.physics.p2.hitTest(new Phaser.Point(rx - 16, ry)).length == 0) {
-                    new Dummy(this.game, rx - 25, ry);
-                }
+        //     if (py % 8 < 0.5) {
+        //         var rx = Math.round(px);
+        //         var ry = Math.round(py);
+        //         // if (/*this.game.terrain.getPixelRGB(rx + 16, ry).a > 0 &&
+        //         //     this.game.terrain.getPixelRGB(rx + 25, ry).a > 0 &&*/
+        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx + 16, ry)).length == 0) 
+        //         // {
+        //         //     new Dummy(this.game, rx + 25, ry);
+        //         // } else if (/*this.game.terrain.getPixelRGB(rx - 16, ry).a > 0 &&
+        //         //     this.game.terrain.getPixelRGB(rx - 25, ry).a > 0 &&*/
+        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx - 16, ry)).length == 0) {
+        //         //     new Dummy(this.game, rx - 25, ry);
+        //         // }
 
-                if (this.game.terrain.getPixelRGB(rx, ry - 16).a > 0 &&
-                    this.game.terrain.getPixelRGB(rx, ry - 25).a > 0 &&
-                    this.game.physics.p2.hitTest(new Phaser.Point(rx, ry - 16)).length == 0) {
-                    new Dummy(this.game, rx, ry - 25);
-                } else if (this.game.terrain.getPixelRGB(rx, ry + 16).a > 0 &&
-                    this.game.terrain.getPixelRGB(rx, ry + 25).a > 0 &&
-                    this.game.physics.p2.hitTest(new Phaser.Point(rx, ry + 16)).length == 0) {
-                    new Dummy(this.game, rx, ry + 25);
-                }
-            }
-        }
+        //         // if (/*this.game.terrain.getPixelRGB(rx, ry - 16).a > 0 &&
+        //         //     this.game.terrain.getPixelRGB(rx, ry - 25).a > 0 &&*/
+        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx, ry - 16)).length == 0) {
+        //         //     new Dummy(this.game, rx, ry - 25);
+        //         // } else if (/*this.game.terrain.getPixelRGB(rx, ry + 16).a > 0 &&
+        //         //     this.game.terrain.getPixelRGB(rx, ry + 25).a > 0 &&*/
+        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx, ry + 16)).length == 0) {
+        //         //     new Dummy(this.game, rx, ry + 25);
+        //         // }
+        //     }
+        // }
 
         if(!this.rope){
             this.rope = this.game.add.rope(this.ropePoints[0].x, this.ropePoints[0].y, 'rope', null, this.ropePoints);

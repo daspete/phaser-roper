@@ -1,0 +1,153 @@
+{
+  "levels": [
+    {
+      "name": "New Level",
+      "width": 1400,
+      "height": 780,
+      "elements": [
+        {
+          "objectType": "obstacles",
+          "type": "sand-platform",
+          "name": "Sand platform",
+          "file": "assets/level/obstacles/sand-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 113,
+            "y": 522
+          },
+          "id": 1526208338091
+        },
+        {
+          "objectType": "obstacles",
+          "type": "stone-platform",
+          "name": "Stone platform",
+          "file": "assets/level/obstacles/stone-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 759,
+            "y": 443
+          },
+          "id": 1526208339918
+        },
+        {
+          "objectType": "obstacles",
+          "type": "stone-platform-small",
+          "name": "Stone platform small",
+          "file": "assets/level/obstacles/stone-platform-small.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 549,
+            "y": 557
+          },
+          "id": 1526208341925
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "startend": [
+    {
+      "objectType": "startend",
+      "type": "start-platform",
+      "name": "Start Platform",
+      "file": "assets/level/startend/start.png",
+      "scale": 1,
+      "rotation": 0,
+      "start": true,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "startend",
+      "type": "end-platform",
+      "name": "End Platform",
+      "file": "assets/level/startend/end.png",
+      "scale": 1,
+      "rotation": 0,
+      "start": false,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "obstacles": [
+    {
+      "objectType": "obstacles",
+      "type": "grass-platform",
+      "name": "Grass platform",
+      "file": "assets/level/obstacles/grass-platform.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "obstacles",
+      "type": "grass-platform-small",
+      "name": "Grass platform small",
+      "file": "assets/level/obstacles/grass-platform-small.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "obstacles",
+      "type": "sand-platform",
+      "name": "Sand platform",
+      "file": "assets/level/obstacles/sand-platform.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "obstacles",
+      "type": "sand-platform-small",
+      "name": "Sand platform small",
+      "file": "assets/level/obstacles/sand-platform-small.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "obstacles",
+      "type": "stone-platform",
+      "name": "Stone platform",
+      "file": "assets/level/obstacles/stone-platform.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "objectType": "obstacles",
+      "type": "stone-platform-small",
+      "name": "Stone platform small",
+      "file": "assets/level/obstacles/stone-platform-small.png",
+      "scale": 1,
+      "rotation": 0,
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ]
+}

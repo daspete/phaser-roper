@@ -21,7 +21,7 @@
             </div>
 
             <div class="level-editor__minimap">
-                <div :style="levelPreviewStyles">
+                <div :style="levelPreviewStyles" v-if="showMinimap">
                     <level :level="level" :preview="true"></level>
                 </div>
             </div>
@@ -34,6 +34,7 @@
                 <div>
                     <button class="btn--selector" v-on:click="() => { this.currentElements = 'startend' }">Start and Goal</button>
                     <button class="btn--selector" v-on:click="() => { this.currentElements = 'obstacles' }">Obstacles</button>
+                    <button class="btn--selector" v-on:click="() => { this.currentElements = 'collectibles' }">Collectibles</button>
                 </div>
                 
                 <div 
@@ -108,11 +109,13 @@ export default {
             name: 'New Level',
             width: 3000,
             height: 1200,
+            tick: 0,
             elements: []
         };
         return {
             currentElements: 'obstacles',
             levels: [],
+            showMinimap: true,
             showLevelSelector: false,
             defaultLevel: defaultLevel,
             level: JSON.parse(JSON.stringify(defaultLevel))
@@ -202,6 +205,12 @@ export default {
             this.level = level;
 
             this.showLevelSelector = false;
+        },
+
+        Update(){
+            this.showMinimap = false;
+
+            this.$nextTick(() => { this.showMinimap = true });
         },
 
         async SaveLevel() {

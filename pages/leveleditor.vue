@@ -13,11 +13,13 @@ export default {
     async asyncData({ app }){
         let obstacles = await app.$axios.$get('obstacles');
         let startend = await app.$axios.$get('startend');
+        let collectibles = await app.$axios.$get('collectibles');
 
         return {
             elements: {
                 obstacles: obstacles,
-                startend: startend
+                startend: startend,
+                collectibles: collectibles
             }
         }
     }

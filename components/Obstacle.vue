@@ -45,6 +45,10 @@ export default {
                             x: this.obstacle.position.x,
                             y: this.obstacle.position.y
                         });
+                    },
+
+                    onend: () => {
+                        this.$parent.$parent.Update();
                     }
                 })
         },

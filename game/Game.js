@@ -10,9 +10,10 @@ import GameState from '~/game/states/GameState'
 
 class Game extends Phaser.Game {
     
-    constructor(settings){
+    constructor(settings, page){
         super(1280, 720, Phaser.AUTO, 'game-container', null);
         this.$settings = settings;
+        this.$page = page;
 
         this.state.add('Boot', BootState, false);
         this.state.add('Preload', PreloadState, false);

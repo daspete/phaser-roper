@@ -55,8 +55,13 @@ class Rope extends Phaser.Sprite {
             //pointAlpha = this.game.terrain.getPixelRGB(Math.round(this.anchorPoint.x), Math.round(this.anchorPoint.y)).a;
 
             if (collisions.length > 0) {
-                if ((collisions[0].parent.sprite == null) || (collisions[0].parent.sprite &&
-                    (collisions[0].parent.sprite.key != 'player'))) {
+                if (collisions[0].parent.sprite == null || 
+                    (
+                        collisions[0].parent.sprite &&
+                        collisions[0].parent.sprite.key != 'player' &&
+                        collisions[0].parent.sprite.noCollision != true
+                    )
+                ) {
                     this.anchorBody = collisions[0].parent;
                     while (collisions.length > 0) {
                         this.anchorPoint.y += 2;

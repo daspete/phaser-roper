@@ -1,6 +1,6 @@
 <template>
-    <div class="startend" :data-id="startend.id">
-        <img :src="`/${ startend.file }`">
+    <div class="collectible" :data-id="collectible.id">
+        <img :src="`/${ collectible.file }`">
     </div>
 </template>
 
@@ -9,7 +9,7 @@ import interact from 'interactjs';
 import TweenMax from 'gsap';
 
 export default {
-    props: ['startend', 'levelContainer', 'preview'],
+    props: ['collectible', 'levelContainer', 'preview'],
 
     data(){
         return {
@@ -25,24 +25,24 @@ export default {
     methods: {
 
         Init(){
-            TweenMax.set(`.startend[data-id="${ this.startend.id }"]`, {
-                x: this.startend.position.x,
-                y: this.startend.position.y
+            TweenMax.set(`.collectible[data-id="${ this.collectible.id }"]`, {
+                x: this.collectible.position.x,
+                y: this.collectible.position.y
             });
 
             if(this.preview == true) return;
             
-            this.interact = interact(`.startend[data-id="${ this.startend.id }"]`)
+            this.interact = interact(`.collectible[data-id="${ this.collectible.id }"]`)
                 .draggable({
                     context: this.levelContainer,
 
                     onmove: (event) => {
-                        this.startend.position.x += event.dx;
-                        this.startend.position.y += event.dy;
+                        this.collectible.position.x += event.dx;
+                        this.collectible.position.y += event.dy;
 
                         TweenMax.set(event.target, {
-                            x: this.startend.position.x,
-                            y: this.startend.position.y
+                            x: this.collectible.position.x,
+                            y: this.collectible.position.y
                         });
                     },
 

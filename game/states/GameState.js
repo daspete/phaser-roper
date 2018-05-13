@@ -11,6 +11,7 @@ class GameState extends Phaser.State {
         this.load.physics('elementphysics', 'assets/level/elementphysics.json');
 
         this.level = this.game.$settings.levels[this.game.currentLevel];
+        this.game.$page.SetLevel(this.level);
 
         for(let i = 0; i < this.level.elements.length; i++){
             this.load.image(

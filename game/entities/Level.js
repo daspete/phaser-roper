@@ -3,6 +3,7 @@ import '~/game/PhaserBridge'
 import Obstacle from '~/game/entities/Obstacle'
 import StartPlatform from '~/game/entities/StartPlatform'
 import EndPlatform from '~/game/entities/EndPlatform'
+import Collectible from '~/game/entities/Collectible'
 
 class Level extends Phaser.Sprite {
 
@@ -23,6 +24,10 @@ class Level extends Phaser.Sprite {
             switch(element.objectType){
                 case 'obstacles':
                     this.elements.push(new Obstacle(this.game, element));
+                break;
+
+                case 'collectibles':
+                    this.elements.push(new Collectible(this.game, element));
                 break;
 
                 case 'startend':

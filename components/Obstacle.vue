@@ -9,7 +9,7 @@ import interact from 'interactjs';
 import TweenMax from 'gsap';
 
 export default {
-    props: ['obstacle', 'levelContainer'],
+    props: ['obstacle', 'levelContainer', 'preview'],
 
     data(){
         return {
@@ -18,6 +18,7 @@ export default {
     },
 
     mounted(){
+        
         this.Init();
         this.Update();
     },
@@ -29,6 +30,8 @@ export default {
                 x: this.obstacle.position.x,
                 y: this.obstacle.position.y
             });
+
+            if(this.preview == true) return;
             
             this.interact = interact(`.obstacle[data-id="${ this.obstacle.id }"]`)
                 .draggable({

@@ -71,19 +71,10 @@ class Player extends Phaser.Sprite {
     }
 
     IsTouchingLevel() {
+        // TODO: check world bound hit
         return false;
         var x = Math.round(this.body.x);
         var y = Math.round(this.body.y);
-
-
-        // if (this.game.terrain.getPixelRGB(x, y).a > 0. ||
-        //     this.game.terrain.getPixelRGB(x, y - 20).a > 0. ||
-        //     this.game.terrain.getPixelRGB(x + 10, y - 10).a > 0. ||
-        //     this.game.terrain.getPixelRGB(x - 10, y - 10).a > 0.) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
     }
 
     IsTouchingDown() {

@@ -7,18 +7,23 @@
 
         <div class="level-editor__content">
             <div class="level-editor__toolbox">
-                <div>name <input v-model="level.name" type="text"></div>
-                <div>width <input v-model="level.width" type="number"></div>
-                <div>height <input v-model="level.height" type="number"></div>
+                <div class="header">Level Settings</div>
+                <div>Name <input v-model="level.name" type="text"></div>
+                <div>Width <input v-model="level.width" type="number"></div>
+                <div>Height <input v-model="level.height" type="number"></div>
 
                 <div>
-                    elements
-                    <div v-for="element in level.elements" :key="`element-layer-${ element.file }-${element.id}`">{{ element.name }}</div>
+                    <div class="header">Elements</div>
+                    <div class="element" v-for="(element, elementID) in level.elements" :key="`element-layer-${ element.file }-${element.id}`">
+                        <button class="btn--icon" v-on:click="DeleteElement(elementID)">x</button> {{ element.name }} 
+                    </div>
                 </div>
             </div>
 
             <div class="level-editor__minimap">
-                
+                <div :style="levelPreviewStyles">
+                    <level :level="level" :preview="true"></level>
+                </div>
             </div>
 
             <div class="level-editor__level" ref="level-wrapper">
@@ -27,28 +32,49 @@
 
             <div class="level-editor__elements" ref="elements-wrapper">
                 <div>
-                    <div v-on:click="() => { this.currentElements = 'startend' }">Start und Endplatformen</div>
-                    <div v-on:click="() => { this.currentElements = 'obstacles' }">Hindernisse</div>
+                    <button class="btn--selector" v-on:click="() => { this.currentElements = 'startend' }">Start and Goal</button>
+                    <button class="btn--selector" v-on:click="() => { this.currentElements = 'obstacles' }">Obstacles</button>
                 </div>
                 
                 <div 
-                    class="element element--draggable" 
-                    style="transform: scale(0.5); transform-origin: 0% 50%" 
+                    class="element element--draggable"
+                    style="width: 50%; padding: 1rem; display: inline-block"
                     v-for="(element, elementID) in elements[currentElements]" 
                     :key="`${ element.file }-${ elementID }`"
                     :data-type="element.type"
                     :data-object-type="element.objectType"
+                    :title="element.name"
                 >
-                    <img :src="`/${ element.file }`" alt=""/>
+                    <div :style="`width: 100%; height: 50px; background-size: contain; background-position: center center; background-repeat: no-repeat; background-image: url('${ element.file }')`"></div>
                 </div>
             </div>
         </div>
 
 
         <div class="level-editor__footer">
-            <button class="btn--big" v-on:click="ResetLevel">Neues Level erstellen</button>
-            <button class="btn--big" v-on:click="LoadLevel">Level laden</button>
-            <button class="btn--big" v-on:click="SaveLevel">Level speichern</button>
+            <button class="btn--big" v-on:click="ResetLevel">New</button>
+            <button class="btn--big" v-on:click="LoadLevel">Load</button>
+            <button class="btn--big" v-on:click="SaveLevel">Save</button>
+        </div>
+
+        <div class="level-editor__level-selector" v-if="showLevelSelector">
+            <div class="level-editor__level-selector__underlay"></div>
+            <div class="level-editor__level-selector__content">
+                <div v-for="currentLevel in levels" class="level-selector" v-on:click="OnLevelSelected(currentLevel)" :key="`level-selector-${ currentLevel.id }`">
+                    <div class="level-name">
+                        {{ currentLevel.name }}
+                    </div>
+                    <div class="level-preview">
+                        <div :style="levelPreviewStyles">
+                            <level :level="currentLevel" :preview="true"></level>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="level-editor__level-selector__footer">
+                <button class="btn--big" v-on:click="() => { this.showLevelSelector = false; }">Cancel</button>
+            </div>
+           
         </div>
     </div>
 </template>
@@ -78,15 +104,33 @@ export default {
     },
 
     data() {
+        let defaultLevel = {
+            name: 'New Level',
+            width: 3000,
+            height: 1200,
+            elements: []
+        };
         return {
             currentElements: 'obstacles',
-            level: {
-                name: 'New Level',
-                width: 1400,
-                height: 780,
-                elements: []
-            }
+            levels: [],
+            showLevelSelector: false,
+            defaultLevel: defaultLevel,
+            level: JSON.parse(JSON.stringify(defaultLevel))
         };
+    },
+
+    computed: {
+        levelPreviewStyles(){
+            let widthRatio = 200 / this.level.width;
+            let heightRatio = 150 / this.level.height;
+
+            let ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+
+            return {
+                transform: 'scale(' + ratio + ')',
+                transformOrigin: '0% 0%'
+            }
+        }
     },
 
     mounted(){
@@ -100,8 +144,7 @@ export default {
 
                 TweenMax.set(target, {
                     x: x,
-                    y: y,
-                    scale: 1
+                    y: y
                 });
 
                 target.setAttribute('data-x', x);
@@ -128,8 +171,7 @@ export default {
 
                 TweenMax.set(target, {
                     x: 0,
-                    y: 0,
-                    scale: 0.5
+                    y: 0
                 });
                 
                 let type = target.getAttribute('data-type');
@@ -146,12 +188,55 @@ export default {
     },
 
     methods: {
-        ResetLevel() {},
+        ResetLevel() {
+            this.level = JSON.parse(JSON.stringify(this.defaultLevel));
+        },
 
-        LoadLevel() {},
+        async LoadLevel() {
+            this.levels = await this.$axios.$get('levels');
+
+            this.showLevelSelector = true;
+        },
+
+        OnLevelSelected(level){
+            this.level = level;
+
+            this.showLevelSelector = false;
+        },
 
         async SaveLevel() {
-            await this.$axios.$post('levels', this.level);
+            let hasStart = this.level.elements.find((element) => {
+                return element.start == true;
+            });
+
+            if(!hasStart){
+                alert('There is no start element, please set one');
+                return;
+            }
+
+            let hasEnd = this.level.elements.find((element) => {
+                return element.start == false;
+            });
+
+            if(!hasEnd){
+                alert('There is no end element, please set one');
+                return;
+            }
+
+            let level = null;
+
+            if(this.level.id){
+                level = await this.$axios.$put(`levels/${ this.level.id }`, this.level);
+            }else{
+                level = await this.$axios.$post('levels', this.level);
+            }
+
+            this.level.id = level.id;
+            
+        },
+
+        DeleteElement(elementID){
+            this.level.elements.splice(elementID, 1);
         },
 
         FindObjectByType(objectType, type){

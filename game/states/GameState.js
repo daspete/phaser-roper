@@ -8,15 +8,14 @@ import Level from '~/game/entities/Level'
 class GameState extends Phaser.State {
 
     preload() {
-        this.load.image('terrain', 'assets/levels/terrain0.png');
-        this.load.json('positions', 'assets/levels/positions0.json');
-
         this.load.physics('elementphysics', 'assets/level/elementphysics.json');
 
-        for(let i = 0; i < this.game.$settings.level.elements.length; i++){
+        this.level = this.game.$settings.levels[this.game.currentLevel];
+
+        for(let i = 0; i < this.level.elements.length; i++){
             this.load.image(
-                this.game.$settings.level.elements[i].type,
-                this.game.$settings.level.elements[i].file
+                this.level.elements[i].type,
+                this.level.elements[i].file
             );
         }
     }
@@ -27,17 +26,11 @@ class GameState extends Phaser.State {
         }
         this.game.spacebar = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-        this.game.world.setBounds(0, 0, 8000, 1000);
+        this.game.world.setBounds(0, 0, this.level.width, this.level.height);
         this.width = this.game.world.bounds.width;
         this.height = this.game.world.bounds.height;
 
         this.game.background = new Background(this.game, this.width, this.height);
-
-        // this.game.terrain = this.game.add.bitmapData(this.width, this.height);
-        // this.game.terrain.addToWorld();
-        // this.game.terrain.draw('terrain', 0, 0);
-        // this.game.terrain.update();
-        
 
         this.physics.startSystem(Phaser.Physics.P2JS);
         this.physics.p2.gravity.y = 1400;
@@ -49,21 +42,15 @@ class GameState extends Phaser.State {
 
         this.physics.p2.updateBoundsCollisionGroup();
 
-        this.positions = this.cache.getJSON('positions');
+        this.game.level = new Level(this.game, this.level);
 
-        this.game.level = new Level(this.game, this.game.$settings.level);
+        let startElement = this.level.elements.find((element) => {
+            return element.start == true;
+        });
 
-        this.game.player = new Player(this.game, this.positions.start.x, this.positions.start.y - 100);
+        this.game.player = new Player(this.game, startElement.position.x + 150, startElement.position.y - 300);
         this.game.player.body.setCollisionGroup(this.game.spriteCG);
         this.game.player.body.collides(this.game.spriteCG);
-
-        // this.startCloud = new Cloud(this.game, this.positions.start.x, this.positions.start.y);
-        // this.startCloud.body.setCollisionGroup(this.game.spriteCG);
-        // this.startCloud.body.collides(this.game.spriteCG);
-
-        // this.finishCloud = new Cloud(this.game, this.positions.finish.x, this.positions.finish.y);
-        // this.finishCloud.body.setCollisionGroup(this.game.spriteCG);
-        // this.finishCloud.body.collides(this.game.spriteCG);
 
         this.game.camera.follow(this.game.player);
         this.timer = 0;
@@ -85,13 +72,15 @@ class GameState extends Phaser.State {
         }
 
         if (this.game.playerWins) {
-            this.QuitGame();
+            
 
             this.game.player.allowAction = false;
             this.game.player.body.velocity.x = 0;
             this.game.player.body.velocity.y = 0;
 
             this.game.player.frame = 0;
+
+            this.WinGame();
         }
 
         this.timer++;
@@ -110,6 +99,14 @@ class GameState extends Phaser.State {
         }
     }
 
+    WinGame(){
+        if(this.game.currentLevel >= this.game.$settings.levels.length - 1){
+            this.state.start('MainMenu');
+        }else{
+            this.game.currentLevel++;
+            this.state.start('Game');
+        }
+    }
 
 }
 

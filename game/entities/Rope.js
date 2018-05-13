@@ -103,9 +103,6 @@ class Rope extends Phaser.Sprite {
             this.distanceToAnchor = Math.sqrt(Math.pow(
                 this.player.x - this.anchorPoint.x, 2) + Math.pow(this.player.y - this.anchorPoint.y, 2
             ));
-            
-            // this.nSegments = ~~(this.distanceToAnchor / this.game.$settings.rope.sectionDivisor);
-            // if (this.nSegments < 4) { this.nSegments = 4; } else if (this.nSegments > 15) { this.nSegments = 15; }
 
             this.nSegments = 12;
 
@@ -150,7 +147,7 @@ class Rope extends Phaser.Sprite {
     UpdateRope(){
         this.ropeTimer++;
 
-        var y = 1 / 128;
+        var y = 1 / 32;
         var wx = [this.player.x];
         var wy = [this.player.y];
 
@@ -167,40 +164,11 @@ class Rope extends Phaser.Sprite {
             ));
         }
 
-        // for (var i = 0, j = 0; i <= 1; i += y, j++) {
-        //     var px = this.game.math.linearInterpolation(wx, i);
-        //     var py = this.game.math.linearInterpolation(wy, i);
-
-        //     if (py % 8 < 0.5) {
-        //         var rx = Math.round(px);
-        //         var ry = Math.round(py);
-        //         // if (/*this.game.terrain.getPixelRGB(rx + 16, ry).a > 0 &&
-        //         //     this.game.terrain.getPixelRGB(rx + 25, ry).a > 0 &&*/
-        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx + 16, ry)).length == 0) 
-        //         // {
-        //         //     new Dummy(this.game, rx + 25, ry);
-        //         // } else if (/*this.game.terrain.getPixelRGB(rx - 16, ry).a > 0 &&
-        //         //     this.game.terrain.getPixelRGB(rx - 25, ry).a > 0 &&*/
-        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx - 16, ry)).length == 0) {
-        //         //     new Dummy(this.game, rx - 25, ry);
-        //         // }
-
-        //         // if (/*this.game.terrain.getPixelRGB(rx, ry - 16).a > 0 &&
-        //         //     this.game.terrain.getPixelRGB(rx, ry - 25).a > 0 &&*/
-        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx, ry - 16)).length == 0) {
-        //         //     new Dummy(this.game, rx, ry - 25);
-        //         // } else if (/*this.game.terrain.getPixelRGB(rx, ry + 16).a > 0 &&
-        //         //     this.game.terrain.getPixelRGB(rx, ry + 25).a > 0 &&*/
-        //         //     this.game.physics.p2.hitTest(new Phaser.Point(rx, ry + 16)).length == 0) {
-        //         //     new Dummy(this.game, rx, ry + 25);
-        //         // }
-        //     }
-        // }
-
         if(!this.rope){
             this.rope = this.game.add.rope(this.ropePoints[0].x, this.ropePoints[0].y, 'rope', null, this.ropePoints);
             this.player.bringToTop();
         }
+
         this.rope.alpha = 1;
         this.rope.x = this.player.x;
         this.rope.y = this.player.y;
@@ -227,7 +195,7 @@ class Rope extends Phaser.Sprite {
         this.ropeTimer = 0;
 
         this.ClearRopeConstraints();
-        this.ropeSegments.destroy(true, true);  // destroy children, dont destroy group
+        this.ropeSegments.destroy(true, true);
 
         this.anchorBody = undefined;
 

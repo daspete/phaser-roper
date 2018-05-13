@@ -23,7 +23,7 @@ export default {
     },
 
     mounted(){
-        settings.level = this.levels[0];
+        settings.levels = this.levels;
         this.game = new Game(settings);
     },
 

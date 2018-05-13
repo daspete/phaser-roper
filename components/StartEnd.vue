@@ -9,7 +9,7 @@ import interact from 'interactjs';
 import TweenMax from 'gsap';
 
 export default {
-    props: ['startend', 'levelContainer'],
+    props: ['startend', 'levelContainer', 'preview'],
 
     data(){
         return {
@@ -29,6 +29,8 @@ export default {
                 x: this.startend.position.x,
                 y: this.startend.position.y
             });
+
+            if(this.preview == true) return;
             
             this.interact = interact(`.startend[data-id="${ this.startend.id }"]`)
                 .draggable({

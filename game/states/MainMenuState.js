@@ -9,8 +9,11 @@ class MainMenuState extends Phaser.State {
         this.spacebar = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
         this.game.currentLevel = 0;
+
+        this.game.$page.SetScore(0);
+        this.game.$page.SetMenuState(this);
         // while developing
-        this.StartGame();
+        //this.StartGame();
     }
 
     update(){

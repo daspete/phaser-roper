@@ -109,7 +109,7 @@ class Rope extends Phaser.Sprite {
                 this.player.x - this.anchorPoint.x, 2) + Math.pow(this.player.y - this.anchorPoint.y, 2
             ));
 
-            this.nSegments = 12;
+            this.nSegments = 6;
 
             for (var i = 1; i <= this.nSegments; i++) {
                 var x = (this.player.x + this.game.$settings.rope.distanceX) +
@@ -137,7 +137,7 @@ class Rope extends Phaser.Sprite {
                 }
 
                 w.body.fixedRotation = true;
-                w.body.data.gravityScale = this.game.$settings.rope.bungeeFactor;
+                w.body.data.gravityScale = 0;//this.game.$settings.rope.bungeeFactor;
             }
 
             if (this.anchorBody && this.ropeSegments.children[this.nSegments - 1]) {
@@ -179,7 +179,7 @@ class Rope extends Phaser.Sprite {
         this.rope.y = this.player.y;
         this.rope.points = this.ropePoints; 
 
-        var r = 2 * (Math.sin((this.ropeTimer / 18) * 2 * Math.PI) + 1) + 2;
+        var r = 2 * (Math.sin((this.ropeTimer / 36) * 2 * Math.PI) + 1) + 2;
 
         this.ClearRopeConstraints();
 

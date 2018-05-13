@@ -2,7 +2,6 @@ import '~/game/PhaserBridge'
 
 import Background from '~/game/entities/Background'
 import Player from '~/game/entities/Player'
-import Cloud from '~/game/entities/Cloud'
 import Level from '~/game/entities/Level'
 
 class GameState extends Phaser.State {

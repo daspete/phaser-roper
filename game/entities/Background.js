@@ -34,8 +34,8 @@ class Background {
             y: this.game.camera.y
         };
 
-        let distanceX = position.x - this.oldPosition.x;
-        let distanceY = position.y - this.oldPosition.y;
+        let distanceX = this.game.camera.x - this.oldPosition.x;
+        let distanceY = this.game.camera.y - this.oldPosition.y;
 
         
 

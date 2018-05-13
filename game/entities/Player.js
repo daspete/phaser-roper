@@ -72,6 +72,7 @@ class Player extends Phaser.Sprite {
 
     IsTouchingLevel() {
         // TODO: check world bound hit
+        if(this.body.y > this.game.world.bounds.height - 30) return true;
         return false;
         var x = Math.round(this.body.x);
         var y = Math.round(this.body.y);

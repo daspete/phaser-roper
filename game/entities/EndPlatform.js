@@ -17,7 +17,7 @@ class EndPlatform extends Phaser.Sprite {
         this.body.loadPolygon('elementphysics', this.key);
 
         this.body.setCollisionGroup(this.game.spriteCG);
-        this.body.collides([this.game.spriteCG, this.game.ropeCG ]);
+        this.body.collides([this.game.spriteCG]);
 
         this.body.fixedRotation = true;
         this.body.mass = 1000;

@@ -59,8 +59,48 @@
     }
 
     &__wrapper {
+        position: relative;
         width: 1280px;
         margin: 0 auto;
         box-shadow: 0 0 60px rgba(black, 1);
+    }
+
+    &__description {
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        background-color: rgba(white, 0.05);
+
+        a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    }
+
+    &__main-menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(black, 0.9);
+        color: darkorange;
+        text-align: center;
+        font-size: 3rem;
+
+        &__header {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+        }
+
+        &__content {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+        }
     }
 }

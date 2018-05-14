@@ -84,6 +84,8 @@ class GameState extends Phaser.State {
         }
 
         this.timer++;
+
+        this.game.$page.OnGameStateUpdate();
     }
 
     render(){

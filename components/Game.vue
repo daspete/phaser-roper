@@ -49,7 +49,7 @@ export default {
             game: null,
             score: 0,
             level: null,
-            menuState: null,
+            state: null,
             showMenu: false
         }
     },
@@ -60,14 +60,24 @@ export default {
     },
 
     methods: {
-        StartGame(){
-            this.showMenu = false;
-            this.menuState.StartGame();
+        InitGameFromMainMenu(state){
+            this.showMenu = true;
+            this.state = state;
         },
 
-        SetMenuState(menuState){
-            this.menuState = menuState;
-            this.showMenu = true;
+        OnMainMenuStateUpdate(){
+            if(this.state.spacebar.isDown){
+                this.StartGame();
+            }
+        },
+
+        OnGameStateUpdate(){
+
+        },
+
+        StartGame(){
+            this.showMenu = false;
+            this.state.StartGame();
         },
 
         SetScore(points){

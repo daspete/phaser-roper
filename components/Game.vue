@@ -19,15 +19,18 @@
                 Press Space to swing forward and get to the end platform without loosing grip :) you can create new levels in the <a href="/leveleditor">Leveleditor</a><br>
                 This game isn't optimized quite well at the moment, so be sure you play it in the Chrome browser.
             </div>
-            <div class="game__main-menu" v-if="showMenu">
-                <div class="game__main-menu__header">
-                    MAIN MENU
-                </div>
 
-                <div class="game__main-menu__content">
-                    <button class="btn--big" v-on:click="StartGame">START GAME</button>
-                </div>
+
+
+            <div class="game__main-menu" v-if="showStartMenu">
+                <button class="game__main-menu__start-button" v-on:click="StartGame"><span>START GAME</span></button>
             </div>
+            <div class="game__main-menu" v-if="showRestartMenu">
+                <button class="game__main-menu__restart-button" v-on:click="StartGame"><span>RESTART GAME</span></button>
+            </div>
+
+
+
         </div>
     </div>
 </template>
@@ -50,7 +53,8 @@ export default {
             score: 0,
             level: null,
             state: null,
-            showMenu: false
+            showStartMenu: false,
+            showRestartMenu: false
         }
     },
 
@@ -61,7 +65,7 @@ export default {
 
     methods: {
         InitGameFromMainMenu(state){
-            this.showMenu = true;
+            this.showStartMenu = true;
             this.state = state;
         },
 
@@ -76,7 +80,7 @@ export default {
         },
 
         StartGame(){
-            this.showMenu = false;
+            this.showStartMenu = false;
             this.state.StartGame();
         },
 

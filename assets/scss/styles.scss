@@ -78,22 +78,54 @@
         }
     }
 
-    &__main-menu {
+    &__main-menu,
+    &__game-over {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(black, 0.9);
-        color: darkorange;
-        text-align: center;
-        font-size: 3rem;
+        
+        text-align: center;        
 
-        &__header {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            right: 0;
+        &__start-button,
+        &__restart-button {
+            position: relative;
+            padding: 3rem 5rem;
+            top: 50%;
+            margin-top: -80px;
+            display: inline-block;
+            font-size: 3rem;
+            background-color: transparent;
+            font-weight: 700;
+            color: rgba(darkorange, 0.9);
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow:  0 0 50px rgba(black, 0.9);
+            
+            
+            border-left: 2px solid orange;
+            border-top: 2px solid orange;
+            border-right: 2px solid orangered;
+            border-bottom: 2px solid orangered;
+
+            span {
+                position: relative;
+                z-index: 2;
+                text-shadow: 0 0 15px black;
+            }
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                content: '';
+                background-color: rgba(black, 0.6);
+                z-index: 1;
+                border-radius: 10px;
+            }
+
         }
 
         &__content {

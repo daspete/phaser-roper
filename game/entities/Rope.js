@@ -23,12 +23,12 @@ class Rope extends Phaser.Sprite {
         this.ropeSprites = [];
         this.ropePoints = [];
 
-        for(let i = 0; i < 80; i++){
-            this.ropeSprites.push(this.game.add.sprite(0, 0, 'rope'));
-            this.ropeSprites[this.ropeSprites.length - 1].alpha = 0;
-            this.ropeSprites[this.ropeSprites.length - 1].width = 32;
-            this.ropeSprites[this.ropeSprites.length - 1].height = 32;
-        }
+        // for(let i = 0; i < 80; i++){
+        //     this.ropeSprites.push(this.game.add.sprite(0, 0, 'rope'));
+        //     this.ropeSprites[this.ropeSprites.length - 1].alpha = 0;
+        //     this.ropeSprites[this.ropeSprites.length - 1].width = 32;
+        //     this.ropeSprites[this.ropeSprites.length - 1].height = 32;
+        // }
     }
 
     IsActive(){

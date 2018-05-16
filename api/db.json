@@ -180,7 +180,7 @@
     },
     {
       "name": "Level 3",
-      "width": 3000,
+      "width": "5000",
       "height": 1200,
       "tick": 0,
       "elements": [
@@ -207,8 +207,8 @@
           "rotation": 0,
           "start": false,
           "position": {
-            "x": 1144,
-            "y": 1049
+            "x": 4472,
+            "y": 569
           },
           "id": 1526221257634
         },
@@ -237,6 +237,110 @@
             "y": 617
           },
           "id": 1526221268961
+        },
+        {
+          "objectType": "obstacles",
+          "type": "grass-platform",
+          "name": "Grass platform",
+          "file": "assets/level/obstacles/grass-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 4167,
+            "y": 74
+          },
+          "id": 1526364970412
+        },
+        {
+          "objectType": "obstacles",
+          "type": "sand-platform",
+          "name": "Sand platform",
+          "file": "assets/level/obstacles/sand-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 3600,
+            "y": 178
+          },
+          "id": 1526364974364
+        },
+        {
+          "objectType": "obstacles",
+          "type": "stone-platform",
+          "name": "Stone platform",
+          "file": "assets/level/obstacles/stone-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 2962,
+            "y": 237
+          },
+          "id": 1526364981849
+        },
+        {
+          "objectType": "obstacles",
+          "type": "grass-platform-small",
+          "name": "Grass platform small",
+          "file": "assets/level/obstacles/grass-platform-small.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 2617,
+            "y": 358
+          },
+          "id": 1526364993176
+        },
+        {
+          "objectType": "obstacles",
+          "type": "grass-platform",
+          "name": "Grass platform",
+          "file": "assets/level/obstacles/grass-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 1985,
+            "y": 259
+          },
+          "id": 1526364999349
+        },
+        {
+          "objectType": "obstacles",
+          "type": "grass-platform-small",
+          "name": "Grass platform small",
+          "file": "assets/level/obstacles/grass-platform-small.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 1784,
+            "y": 355
+          },
+          "id": 1526365004849
+        },
+        {
+          "objectType": "obstacles",
+          "type": "stone-platform-small",
+          "name": "Stone platform small",
+          "file": "assets/level/obstacles/stone-platform-small.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 1423,
+            "y": 459
+          },
+          "id": 1526365007973
+        },
+        {
+          "objectType": "obstacles",
+          "type": "grass-platform",
+          "name": "Grass platform",
+          "file": "assets/level/obstacles/grass-platform.png",
+          "scale": 1,
+          "rotation": 0,
+          "position": {
+            "x": 985,
+            "y": 499
+          },
+          "id": 1526365012692
         }
       ],
       "id": 3
